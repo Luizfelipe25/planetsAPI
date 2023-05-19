@@ -41,6 +41,10 @@ public class PlanetController {
         return planetRepository.findByPlanetName(name);
     }
 
-
+    @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletePlanetById( @PathVariable("id") Integer id){
+       planetRepository.findById(id).ifPresent(this.planetRepository::delete);
+    }
 
 }
