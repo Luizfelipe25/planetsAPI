@@ -4,6 +4,7 @@ import ch.qos.logback.core.net.server.Client;
 import lombok.AllArgsConstructor;
 import luiz.github.planetAPI.domain.Planet;
 import luiz.github.planetAPI.repository.PlanetRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,10 +29,10 @@ public class PlanetController {
         return planetRepository.findAll();
     }
 
-    @GetMapping("/name")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Planet> getPlanetById(){
-        return planetRepository.findAll();
+    public Planet getPlanetById( @PathVariable("id") Integer id){
+        return planetRepository.findById(id).orElse(null);
     }
 
 
