@@ -35,6 +35,11 @@ public class PlanetController {
         return planetRepository.findById(id).orElse(null);
     }
 
+    @GetMapping("/name/{name}")
+    @ResponseStatus(HttpStatus.OK)
+    public Planet getPlanetByName( @PathVariable("name") String name){
+        return planetRepository.findByPlanetName(name);
+    }
 
 
 
